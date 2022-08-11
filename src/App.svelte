@@ -1,6 +1,10 @@
 <script>
-  import Started from "./lib/Started.svelte";
   import {started} from "./store";
+  import {data} from './utils/data';
+
+  import Started from "./lib/Started.svelte";
+  import GuessWord from "./lib/GuessWord.svelte";
+
 
   let condition = 'false';
 
@@ -9,17 +13,17 @@
 
 <main>
   {#if condition === "true"}
-    <h1>Done</h1>
+    <div>
+      <h2>{data[0].mainPhrase}</h2>
+      <GuessWord answer={data[0].secretWord} />
+    </div>
   {:else}
     <Started />
   {/if}
 </main>
 
 <style>
-  main {
-    margin: 0 auto;
-    max-width: 365px;
-    display: flex;
-    justify-content: center;
+  h2 {
+    margin-bottom: 50px;
   }
 </style>
