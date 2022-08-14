@@ -1,8 +1,13 @@
 <script>
+    import {step} from '../store.js';
+    
     let guessingWord = ""
     let fakeBorderClass = "inactive"
     let guessedWords = []
+    let actualStep = 0
     export let answer;
+
+    step.subscribe(value => actualStep = parseInt(value, 10));
 
     const changeClass = () => {
         fakeBorderClass = fakeBorderClass === "inactive" ? "active" : "inactive"
@@ -12,6 +17,10 @@
         if (guessingWord !== answer) {
             guessedWords = [...guessedWords, guessingWord];
             guessingWord = ""
+        } else {
+            step.set((actualStep + 1).toString());
+            guessingWord = ""
+            guessedWords = [];
         }
     }
 </script>

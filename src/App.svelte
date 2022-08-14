@@ -1,5 +1,5 @@
 <script>
-  import {started} from "./store";
+  import {started, step} from "./store";
   import {data} from './utils/data';
 
   import Started from "./lib/Started.svelte";
@@ -7,18 +7,26 @@
 
 
   let condition = 'false';
+  let actualStep = 0;
 
-  started.subscribe(value => condition = value)
+  started.subscribe(value => condition = value);
+  step.subscribe(value => actualStep = parseInt(value, 10));
+
+  console.log(actualStep)
 </script>
 
 <main>
-  {#if condition === "true"}
-    <div>
-      <h2>{data[0].mainPhrase}</h2>
-      <GuessWord answer={data[0].secretWord} />
-    </div>
+  {#if actualStep > 13}
+    <h1>Gracias! c:</h1>
   {:else}
-    <Started />
+    {#if condition === "true"}
+      <div class="container">
+        <h2>{data[actualStep].mainPhrase}</h2>
+        <GuessWord answer={data[actualStep].secretWord} />
+      </div>
+    {:else}
+      <Started />
+    {/if}
   {/if}
 </main>
 

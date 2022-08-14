@@ -20,7 +20,7 @@
 
 
 body {
-    margin: 0;
+    margin: 0 auto;
     display: flex;
     place-items: center;
     min-width: 320px;
@@ -36,7 +36,6 @@ h1 {
 #app {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2rem;
     text-align: center;
 }
 
@@ -57,4 +56,10 @@ button {
 button:hover {
     background-color: white;
     color: var(--secondary-color);
+}
+
+.container {
+    text-align: center;
+    display: grid;
+    place-items: center;
 }
